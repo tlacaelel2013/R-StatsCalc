@@ -1,0 +1,83 @@
+#! /bin/sh
+
+busybox mount -a
+
+#remount everything, read/write
+#echo "Remounting root" &
+busybox mount -o remount,rw /
+
+/bin/busybox --install -s
+
+# set hostname
+#echo "Setting hostname" &
+hostname openrisc &
+
+# create some dirs to avoid warning messages
+mkdir -p /var/run && \
+mkdir -p /etc/network/if-up.d && \
+mkdir -p /etc/network/if-pre-up.d &
+
+# make home directory for root user
+mkdir -p /root &
+
+# telnetd requires this
+mkdir -p /dev/pts && \
+mount -t devpts none /dev/pts &
+
+mkdir -p /dev/shm && \
+mount -t tmpfs none /dev/shm &
+
+chmod a+rw /dev/fb0
+chmod a+rw /dev/dsp*
+chmod -R a+rw /dev/snd
+
+#set rows and columns of terminal
+stty rows 24
+stty columns 80
+
+#echo "Configuring loopback device"
+#ifconfig lo 127.0.0.1
+
+#ifup lo &
+
+# clear ethernet's IP
+#echo "Bringing up eth0"
+#ifconfig eth0 192.168.1.100 &
+#ifconfig eth0 up
+
+#route add default gw 192.168.1.1
+
+/sbin/ifup -a
+
+#alternative
+#setup dhcp
+#echo "Launching udhcpc"
+#/sbin/udhcpc -n -q -s /usr/share/udhcpc/default.script
+
+# inetd startup
+/usr/sbin/inetd &
+
+# https://unix.stackexchange.com/questions/599949/swapfile-swapon-invalid-argument
+echo "Creating a swap image ..."
+# export PATH=$PATH:/utilities/bin:/utilities/sbin
+# dd if=/dev/zero of=/home/.swap/swapfile.img bs=1M count=64
+dd if=/dev/zero of=/swapfile bs=1M count=32
+dd if=/dev/zero of=/var/swapfile bs=1M count=4
+# fallocate -l 65536 /home/.swap/swapfile
+# mkswap /home/.swap/swapfile.img
+mkswap /swapfile
+mkswap /var/swapfile
+# chmod 0600 /home/.swap/swapfile.img
+# chown root:root /home/.swap/swapfile.img
+chmod 0600 /swapfile
+chown root:root /swapfile
+swapon -a
+# swapon /home/.swap/swapfile.img
+# ulimit -l unlimited
+# https://unix.stackexchange.com/questions/413512/failed-to-swapon
+/sbin/losetup /dev/loop0 /swapfile
+swapon /dev/loop0
+ulimit -l
+cat /proc/swaps
+
+

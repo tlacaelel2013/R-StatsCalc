@@ -1,0 +1,22 @@
+{"src":"fs/", "fs":[
+	{ "name":"lib3", "mode":"40755", "uid":1000, "gid":1000, "child":[
+		{ "name":"libcurl.la", "mode":"100755", "size":1050, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng.la", "mode":"100755", "size":947, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng.a", "mode":"100644", "size":1851496, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng.so", "mode":"100755", "size":1113988, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libjpeg.a", "mode":"100644", "size":2474600, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libcurl.so", "mode":"120777", "path":"libcurl.so.4.8.0"},
+		{ "name":"libjpeg.la", "mode":"100755", "size":911, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng16.so", "mode":"100755", "size":1113988, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng16.la", "mode":"100755", "size":947, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng16.so.16.39.0", "mode":"100755", "size":1113988, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libcurl.so.4", "mode":"120777", "path":"libcurl.so.4.8.0"},
+		{ "name":"libjpeg.so.9", "mode":"100755", "size":1411608, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libjpeg.so", "mode":"100755", "size":1411608, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng16.so.16", "mode":"100755", "size":1113988, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libcurl.a", "mode":"100644", "size":1013024, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libpng16.a", "mode":"100644", "size":1851496, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libcurl.so.4.8.0", "mode":"100755", "size":755152, "uid":1000, "gid":1000, "c":1},
+		{ "name":"libjpeg.so.9.5.0", "mode":"100755", "size":1411608, "uid":1000, "gid":1000, "c":1}
+	]}
+]}
